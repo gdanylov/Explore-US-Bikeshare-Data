@@ -147,6 +147,7 @@ def user_stats(df, city):
     user_type_count = df.groupby('User Type')['User Type'].count()
     print("Total number of users by type: {}".format(user_type_count))
 
+    #Washington does not have gender and birth year columns
     if city != "washington":
 
     # Display counts of gender
