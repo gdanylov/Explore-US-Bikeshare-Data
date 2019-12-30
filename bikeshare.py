@@ -49,7 +49,7 @@ def load_data(city, month, day):
     """
     #load file into a dataframe
     df = pd.read_csv(CITY_DATA[city])
-    
+
     #convert start time to datetime object
     df["Start Time"] = pd.to_datetime(df["Start Time"])
 
@@ -64,12 +64,12 @@ def load_data(city, month, day):
 
         #filter by month to create new dataframe
         df = df[df["month"] == month]
-    
+
     #filter by day of week if applicable
     if day != "all":
         #filter by day to create new dataframe
         df = df[df["day_of_week"] == day.title()]
-        
+
     return df
 
 
@@ -148,7 +148,7 @@ def user_stats(df, city):
     print("Total number of users by type: {}".format(user_type_count))
 
     if city != "washington":
-    
+
     # Display counts of gender
         gender_count = df.groupby("Gender")["Gender"].count()
         print("Count of genders: {}". format(gender_count))
@@ -156,13 +156,13 @@ def user_stats(df, city):
     # Display earliest, most recent, and most common year of birth
         earliest_birth_year = df["Birth Year"].min() #earliest
         print("The earliest year of birth is: {}".format(earliest_birth_year))
-    
+
         recent_birth_year = df["Birth Year"].max() #most recent
         print("The most recent year of birth is: {}".format(recent_birth_year))
-    
+
         common_birth_year = df["Birth Year"].mode() #most common
         print("The most common year of birth is: {}".format(common_birth_year))
-    
+
     else:
         print("\nThis city's database does not contain columns for gender and birth year.")
 
@@ -173,10 +173,11 @@ def display_data(df):
     """ Display raw data to user"""
 
     start_row = 0
-    stop_row = 5   
+    stop_row = 5
 
     raw_data = input("\nDo you want to see the raw data? Enter yes or no.\n").lower()
 
+    #Display 5 rows of df per user request
     if raw_data == "yes":
         while True:
             print(df.iloc[start_row:stop_row])
